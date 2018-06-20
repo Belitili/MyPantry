@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/product_delete"
         android:layout_alignParentTop="true"
+        android:paddingRight="2sp"
         android:textSize="25sp"
         android:text="@string/amount"/>
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/product_delete"
         android:layout_below="@+id/product_amount"
+        android:paddingRight="2sp"
         android:textSize="15sp"/>
 
     <Button

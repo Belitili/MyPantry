@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         unitSpinner.setAdapter(adapter);
         layout.addView(unitSpinner);
 
+        layout.setOrientation(LinearLayout.VERTICAL);
+
         final Spinner locationSpinner = new Spinner(this);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.locations_array, android.R.layout.simple_spinner_item);

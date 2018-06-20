@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+    android:layout_height="50sp"
     android:layout_width="match_parent"
     android:layout_gravity="center_vertical">
     
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:text="@string/product"/>
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_toLeftOf="@id/product_delete"
         android:layout_alignParentTop="true"
         android:paddingRight="2sp"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:text="@string/amount"/>
 
     <TextView

@@ -8,7 +8,7 @@
     </string-array>
 
     <string-array name="units_array">
-        <item>Pieces</item>
+        <item>Pcs</item>
         <item>kg</item>
         <item>l</item>
     </string-array>

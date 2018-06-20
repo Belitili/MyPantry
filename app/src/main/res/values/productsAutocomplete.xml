@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="product_suggestions_array">
+
+
+        <item>Flour</item>
+        <item>Flour (white)</item>
+        <item>Flour (whole)</item>
+        <item>Sugar</item>
+        <item>Sugar (white)</item>
+        <item>Sugar (brown)</item>
+        <item>Sugar (powder)</item>
+        <item>Rice</item>
+        <item>Rice (white longrain)</item>
+        <item>Rice (risotto)</item>
+        <item>Rice (brown)</item>
+        <item>Rice (jasmine)</item>
+        <item>Oats</item>
+        <item>Cornmeal</item>
+        <item>Baking powder</item>
+        <item>Baking soda</item>
+        <item>Cornstarch</item>
+        <item>Beans (black)</item>
+        <item>Beans (white)</item>
+        <item>Beans (garbanzo)</item>
+        <item>Lentils</item>
+        <item>Pasta</item>
+        <item>Couscous</item>
+        <item>Quinoa</item>
+        <item>Olive oil</item>
+        <item>Coconut oil</item>
+        <item>Sesame oil</item>
+        <item>Vegetable oil</item>
+        <item>Peanut oil</item>
+        <item>Vinegar</item>
+        <item>Cider vinegar</item>
+        <item>Rice vinegar</item>
+        <item>Balsamic vinegar</item>
+        <item>Soy sauce</item>
+        <item>Worcestershire</item>
+        <item>Sriracha</item>
+        <item>Honey</item>
+        <item>Mustard</item>
+        <item>Mayonnaise</item>
+        <item>Hoisin Sauce</item>
+        <item>Ketchup</item>
+        <item>Salt</item>
+        <item>Sea salt</item>
+        <item>Pepper</item>
+        <item>Basil</item>
+        <item>Oregano</item>
+        <item>Thyme</item>
+        <item>Cumin</item>
+        <item>Cayenne</item>
+        <item>Paprika</item>
+        <item>Paprika (smoked)</item>
+        <item>Cinnamon</item>
+        <item>Curry</item>
+        <item>Chili</item>
+        <item>Garlic</item>
+        <item>Cocoa</item>
+        <item>Vanilla</item>
+        <item>Tumeric</item>
+        <item>Bouillon cube</item>
+        <item>Milk</item>
+        <item>Eggs</item>
+        <item>Butter</item>
+        <item>Yoghurt</item>
+        <item>Yoghurt (greek)</item>
+        <item>Parmesan</item>
+        <item>Cheese</item>
+        <item>Blue cheese</item>
+        <item>Mozzarella</item>
+        <item>Stilton</item>
+        <item>Cheddar</item>
+        <item>Spinach</item>
+        <item>Broccoli</item>
+        <item>Blueberries</item>
+        <item>Strawberries</item>
+        <item>Peaches</item>
+        <item>Edamame</item>
+        <item>Tomatoes</item>
+        <item>Pumpkin</item>
+        <item>Coconut milk</item>
+        <item>Green curry</item>
+        <item>Red curry</item>
+        <item>Onions</item>
+        <item>Red onions</item>
+        <item>Shallots</item>
+        <item>Sesame seeds</item>
+        <item>Lemon grass</item>
+        <item>Lime leaf</item>
+        <item>Lime</item>
+        <item>Lemon</item>
+        <item>Melon</item>
+        <item>Banana</item>
+        <item>Salmon</item>
+        <item>Shrimp</item>
+        <item>Meat</item>
+        <item>Steak</item>
+        <item>Pork</item>
+        <item>Beef</item>
+        <item>Bread</item>
+        <item>Pita</item>
+        <item>Tortillas</item>
+        <item>Chicken</item>
+        <item>Chicken thighs</item>
+        <item>Chicken wings</item>
+        <item>Chicken legs</item>
+        <item>Chicken breasts</item>
+        <item>Turkey</item>
+        <item>Halibut</item>
+        <item>Trout</item>
+        <item>Mackerel</item>
+        <item>Octopus</item>
+        <item>Roast beef</item>
+        <item>Tomato sauce</item>
+        <item>Tomato canned</item>
+        <item>Passata</item>
+        <item>BBQ sauce</item>
+        <item>Salsa</item>
+        <item>Olives</item>
+        <item>Capers</item>
+        <item>Tabasco</item>
+        <item>Cereal</item>
+        <item>Cereal bars</item>
+        <item>Tuna</item>
+        <item>Tuna (canned)</item>
+        <item>Salmon (canned)</item>
+        <item>Soup (chicken)</item>
+        <item>Soup (mushroom)</item>
+        <item>Green chilis</item>
+        <item>Red chilis</item>
+        <item>Peas</item>
+        <item>Carrots</item>
+        <item>Ice cream</item>
+        <item>Cream</item>
+        <item>Ice</item>
+        <item>Waffles</item>
+        <item>Pizza</item>
+        <item>Cookies</item>
+        <item>Soy milk</item>
+        <item>Cottage cheese</item>
+        <item>Tofu</item>
+        <item>Butter</item>
+        <item>Goat cheese</item>
+        <item>Sheep</item>
+        <item>Lamb</item>
+        <item>Crackers</item>
+        <item>Crackers (whole)</item>
+        <item>Apricots</item>
+        <item>Figs</item>
+        <item>Prunes</item>
+        <item>Raisins</item>
+        <item>Wine</item>
+        <item>Wine (red)</item>
+        <item>Wine (rose)</item>
+        <item>Wine (white)</item>
+        <item>Cranberries</item>
+        <item>Almonds</item>
+        <item>Cashews</item>
+        <item>Walnuts</item>
+        <item>Peanuts</item>
+        <item>Pecans</item>
+        <item>Pistachios</item>
+        <item>Sunflowerseeds</item>
+        <item>Flaxseed</item>
+        <item>Peanut butter</item>
+        <item>Almon butter</item>
+        <item>Soy butter</item>
+        <item>Hummus</item>
+        <item>Chocolate</item>
+        <item>Chocolate (milk)</item>
+        <item>Chocolate (white)</item>
+        <item>Chocolate (dark)</item>
+        <item>Apples</item>
+        <item>Oranges</item>
+        <item>Mango</item>
+        <item>Sweet potato</item>
+        <item>Orange juice</item>
+        <item>Coffee</item>
+        <item>Tea</item>
+        <item>Water</item>
+        <item>Water (sparkling)</item>
+        <item>Water (still)</item>
+        <item>Juice</item>
+        <item>Fruit juice</item>
+        <item>Soy paste</item>
+        <item>Arugula</item>
+        <item>Beet</item>
+        <item>Bok choy</item>
+        <item>Borage</item>
+        <item>Brusselsprouts</item>
+        <item>Cabbage</item>
+        <item>Celery</item>
+        <item>Leek</item>
+        <item>Chicory</item>
+        <item>Lettuce</item>
+        <item>Corn</item>
+        <item>Corn (canned)</item>
+        <item>Dill</item>
+        <item>Cress</item>
+        <item>Endive</item>
+        <item>Rocket</item>
+        <item>Grapes</item>
+        <item>Radishes</item>
+        <item>Kale</item>
+        <item>Sorrel</item>
+        <item>Turnip</item>
+        <item>Yarrow</item>
+        <item>Watercress</item>
+        <item>Avocado</item>
+        <item>Bell pepper</item>
+        <item>Butter melon</item>
+        <item>Cucumber</item>
+        <item>Gourd</item>
+        <item>Eggplant</item>
+        <item>Squash</item>
+        <item>Tomatillo</item>
+        <item>Zucchini</item>
+        <item>Courgette</item>
+        <item>Artichoke</item>
+        <item>Cauliflower</item>
+        <item>Chickpea</item>
+        <item>Fava bean</item>
+        <item>Snap pea</item>
+        <item>Asparagus</item>
+        <item>Asparagus (gr)</item>
+        <item>Asparugus (wh)</item>
+        <item>Chives</item>
+        <item>Fennel</item>
+        <item>Kohlrabi</item>
+        <item>Pearl onion</item>
+        <item>Spring onion</item>
+        <item>Ginger</item>
+        <item>Potato</item>
+        <item>Parsnip</item>
+        <item>Horseradish</item>
+        <item>Jerus artichoke</item>
+        <item>Taro</item>
+        <item>Wasabi</item>
+        <item>Water chestnut</item>
+        <item>Chestnut</item>
+        <item>Mushrooms</item>
+        <item>Shitake</item>
+        <item>Eryngii</item>
+        <item>Cassava</item>
+
+
+    </string-array>
+</resources>

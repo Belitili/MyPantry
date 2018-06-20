@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -61,15 +62,27 @@ public class MainActivity extends AppCompatActivity {
     private void addProductDialog() {
         //alertdialog to add product + amount
         LinearLayout layout = new LinearLayout(this);
-        final EditText productNameBox = new EditText(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(20, 0, 30, 0);
+
+        //autocomplete from list of products (flour, sugar, ...)
+        final AutoCompleteTextView productNameBox = new AutoCompleteTextView(this);
         productNameBox.setHint(this.getString(R.string.product));
+        ArrayAdapter<CharSequence> adapter_prod = ArrayAdapter.createFromResource(this,
+                R.array.product_suggestions_array, android.R.layout.simple_dropdown_item_1line);
+        adapter_prod.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        productNameBox.setAdapter(adapter_prod);
         layout.addView(productNameBox);
 
+        //amount box, accepts numers til 5char
         final EditText productAmountBox = new EditText(this);
         productAmountBox.setHint(this.getString(R.string.amount));
         productAmountBox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         layout.addView(productAmountBox);
 
+        //spinner with amount units (kg, pcs, ...)
         final Spinner unitSpinner = new Spinner(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.units_array, android.R.layout.simple_spinner_item);
@@ -77,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
         unitSpinner.setAdapter(adapter);
         layout.addView(unitSpinner);
 
-        layout.setOrientation(LinearLayout.VERTICAL);
-
+        //spinner with locations (freezer, pantry, ...)
         final Spinner locationSpinner = new Spinner(this);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.locations_array, android.R.layout.simple_spinner_item);
@@ -95,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         if (productNameBox.getText().toString().trim().equals("")) {
                             Toast.makeText(getApplicationContext(), "Product field was empty", Toast.LENGTH_LONG).show();
                         } else {
-                            if(productAmountBox.getText().toString().length()>5 || productNameBox.getText().toString().length()>10) {
+                            if(productAmountBox.getText().toString().length()>5 || productNameBox.getText().toString().length()>20) {
                                 Toast.makeText(getApplicationContext(), "Amount can be only 5char long, Name 10char", Toast.LENGTH_LONG).show();
                             } else {
                                 String product = String.valueOf(productNameBox.getText());

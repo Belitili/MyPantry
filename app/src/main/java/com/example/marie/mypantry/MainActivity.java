@@ -93,24 +93,29 @@ public class MainActivity extends AppCompatActivity {
                         if (productNameBox.getText().toString().trim().equals("")) {
                             Toast.makeText(getApplicationContext(), "Product field was empty", Toast.LENGTH_LONG).show();
                         } else {
-                            String product = String.valueOf(productNameBox.getText());
-                            String amount = String.valueOf(productAmountBox.getText());
-                            String amount_unit = unitSpinner.getSelectedItem().toString();
-                            String location = locationSpinner.getSelectedItem().toString();
-                            if (amount.toString().trim().equals("")) {
-                                amount = "1";
+                            if(productAmountBox.getText().toString().length()>5 || productNameBox.getText().toString().length()>10) {
+                                Toast.makeText(getApplicationContext(), "Amount can be only 5char long, Name 10char", Toast.LENGTH_LONG).show();
+                            } else {
+                                String product = String.valueOf(productNameBox.getText());
+                                String amount = String.valueOf(productAmountBox.getText());
+                                String amount_unit = unitSpinner.getSelectedItem().toString();
+                                String location = locationSpinner.getSelectedItem().toString();
+                                //if amount is left empty, set to 1
+                                if (amount.toString().trim().equals("")) {
+                                    amount = "1";
+                                }
+                                Log.d(TAG, "Add: "+ amount + " " + product + ", location: " + location);
+                                //add data to local db
+                                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                                ContentValues values = new ContentValues();
+                                values.put(ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT, product);
+                                values.put(ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT, amount);
+                                values.put(ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT, amount_unit);
+                                values.put(ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION, location);
+                                db.insertWithOnConflict(ProductDBContract.ProductEntry.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                                db.close();
+                                printAllList();
                             }
-                            Log.d(TAG, "Add: "+ amount + " " + product + ", location: " + location);
-                            //add data to local db
-                            SQLiteDatabase db = dbHelper.getWritableDatabase();
-                            ContentValues values = new ContentValues();
-                            values.put(ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT, product);
-                            values.put(ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT, amount);
-                            values.put(ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT, amount_unit);
-                            values.put(ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION, location);
-                            db.insertWithOnConflict(ProductDBContract.ProductEntry.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
-                            db.close();
-                            printAllList();
                         }
                     }
                 })

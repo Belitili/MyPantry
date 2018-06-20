@@ -25,7 +25,7 @@
         android:id="@+id/product_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/product_amount_unit"
+        android:layout_toLeftOf="@id/product_delete"
         android:layout_alignParentTop="true"
         android:textSize="25sp"
         android:text="@string/amount"/>
@@ -35,10 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/product_delete"
-        android:paddingLeft="3sp"
-        android:paddingRight="10sp"
-        android:layout_alignParentTop="true"
-        android:textSize="25sp"/>
+        android:layout_below="@+id/product_amount"
+        android:textSize="15sp"/>
 
     <Button
         android:id="@+id/product_delete"

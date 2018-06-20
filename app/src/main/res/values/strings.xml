@@ -12,4 +12,5 @@
     <string name="search">Search</string>
     <string name="show_all_products">Show All Products</string>
     <string name="field_required">This field is required!</string>
+    <string name="filter_location">Filter by location</string>
 </resources>

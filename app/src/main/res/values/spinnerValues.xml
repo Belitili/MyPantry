@@ -6,4 +6,10 @@
         <item>Freezer</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="units_array">
+        <item>Pcs</item>
+        <item>kg</item>
+        <item>l</item>
+    </string-array>
 </resources>

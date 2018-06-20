@@ -4,13 +4,16 @@ public class Product {
 
     private String productName;
 
-    private String amount;
+    private double amount;
+
+    private String amountUnit;
 
     private String location;
 
-    Product(String productName, String productAmount, String location) {
+    Product(String productName, double productAmount, String amountUnit, String location) {
         this.setProductName(productName);
         this.setAmount(productAmount);
+        this.setAmountUnit(amountUnit);
         this.setLocation(location);
     }
 
@@ -18,8 +21,12 @@ public class Product {
         this.productName = productName;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public void setAmountUnit(String unit) {
+        this.amountUnit = unit;
     }
 
     public void setLocation(String location) {
@@ -30,9 +37,11 @@ public class Product {
         return productName;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
+
+    public String getAmountUnit() { return amountUnit; }
 
     public String getLocation() {
         return location;

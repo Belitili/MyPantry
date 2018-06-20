@@ -22,24 +22,23 @@
         android:textSize="15sp"/>
 
     <TextView
-        android:id="@+id/product_amount_tag"
+        android:id="@+id/product_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/product_amount"
+        android:layout_toLeftOf="@id/product_amount_unit"
         android:layout_alignParentTop="true"
         android:textSize="25sp"
-        android:text="@string/amount_abbrev"/>
+        android:text="@string/amount"/>
 
     <TextView
-        android:id="@+id/product_amount"
+        android:id="@+id/product_amount_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/product_delete"
         android:paddingLeft="3sp"
         android:paddingRight="10sp"
         android:layout_alignParentTop="true"
-        android:textSize="25sp"
-        android:text="@string/amount"/>
+        android:textSize="25sp"/>
 
     <Button
         android:id="@+id/product_delete"

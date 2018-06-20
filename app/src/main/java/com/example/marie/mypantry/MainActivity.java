@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,13 +67,21 @@ public class MainActivity extends AppCompatActivity {
 
         final EditText productAmountBox = new EditText(this);
         productAmountBox.setHint(this.getString(R.string.amount));
+        productAmountBox.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         layout.addView(productAmountBox);
 
-        final Spinner locationSpinner = new Spinner(this);
+        final Spinner unitSpinner = new Spinner(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.locations_array, android.R.layout.simple_spinner_item);
+                R.array.units_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        locationSpinner.setAdapter(adapter);
+        unitSpinner.setAdapter(adapter);
+        layout.addView(unitSpinner);
+
+        final Spinner locationSpinner = new Spinner(this);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.locations_array, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locationSpinner.setAdapter(adapter2);
         layout.addView(locationSpinner);
 
         AlertDialog dialog = new AlertDialog.Builder(this)
@@ -86,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             String product = String.valueOf(productNameBox.getText());
                             String amount = String.valueOf(productAmountBox.getText());
+                            String amount_unit = unitSpinner.getSelectedItem().toString();
                             String location = locationSpinner.getSelectedItem().toString();
                             if (amount.toString().trim().equals("")) {
                                 amount = "1";
@@ -96,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             ContentValues values = new ContentValues();
                             values.put(ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT, product);
                             values.put(ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT, amount);
+                            values.put(ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT, amount_unit);
                             values.put(ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION, location);
                             db.insertWithOnConflict(ProductDBContract.ProductEntry.TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
                             db.close();
@@ -175,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{ProductDBContract.ProductEntry._ID,
                         ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
                         ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
                         ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION},
                 whereClause, whereArgs, null, null, null);
         Log.d(TAG, "cursor: " + cursor);
@@ -197,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{ProductDBContract.ProductEntry._ID,
                         ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
                         ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
                         ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION},
                 whereClause, whereArgs, null, null, null);
         Log.d(TAG, "cursor: " + cursor);
@@ -217,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                 new String[]{ProductDBContract.ProductEntry._ID,
                         ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
                         ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
                         ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION},
                 null, null, null, null, null);
         this.printFromQueryList(cursor);
@@ -234,8 +248,9 @@ public class MainActivity extends AppCompatActivity {
         while(cursor.moveToNext()) {
             int i_prod = cursor.getColumnIndex(ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT);
             int i_amt = cursor.getColumnIndex(ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT);
+            int i_amt_unt = cursor.getColumnIndex(ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT);
             int i_loc = cursor.getColumnIndex(ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION);
-            products.add(new Product(cursor.getString(i_prod), cursor.getString(i_amt), cursor.getString(i_loc)));
+            products.add(new Product(cursor.getString(i_prod), Double.parseDouble(cursor.getString(i_amt)), cursor.getString(i_amt_unt), cursor.getString(i_loc)));
             //products.add(cursor.getString(i_prod));
         }
 

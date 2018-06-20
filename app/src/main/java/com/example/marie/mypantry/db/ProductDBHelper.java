@@ -11,8 +11,9 @@ public class ProductDBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + ProductDBContract.ProductEntry.TABLE_NAME + " (" +
                     ProductDBContract.ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT + " TEXT NOT NULL," +
-                    ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT + " TEXT, " +
-                    ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION + " TEXT)";
+                    ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT + " REAL NOT NULL, " +
+                    ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT + " TEXT NOT NULL," +
+                    ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION + " TEXT NOT NULL)";
 
     private static final String SQL_DELETE_PRODUCT_TABLE =
             "DROP TABLE IF EXISTS " + ProductDBContract.ProductEntry.TABLE_NAME;

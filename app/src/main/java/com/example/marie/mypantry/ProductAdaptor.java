@@ -42,6 +42,7 @@ public class ProductAdaptor extends ArrayAdapter<Product>{
 
             holder.productName = (TextView) row.findViewById(R.id.product_name);
             holder.productAmount = (TextView) row.findViewById(R.id.product_amount);
+            holder.amountUnit = (TextView) row.findViewById(R.id.product_amount_unit);
             holder.productLocation = (TextView) row.findViewById(R.id.product_location);
             holder.deleteButton = (Button) row.findViewById(R.id.product_delete);
             row.setTag(holder);
@@ -52,7 +53,8 @@ public class ProductAdaptor extends ArrayAdapter<Product>{
         Product p = data.elementAt(position);
 
         holder.productName.setText(p.getProductName());
-        holder.productAmount.setText(p.getAmount());
+        holder.productAmount.setText(Double.toString(p.getAmount()));
+        holder.amountUnit.setText(p.getAmountUnit());
         holder.productLocation.setText(p.getLocation());
 
         return row;
@@ -61,7 +63,7 @@ public class ProductAdaptor extends ArrayAdapter<Product>{
     static class StringReadHolder {
         // for if it also starts to contain ImageView on top of TextViews
         // ex: photo/sketch of product > TODO
-        TextView productName, productAmount, productLocation;
+        TextView productName, productAmount, amountUnit, productLocation;
         Button deleteButton;
     }
 }

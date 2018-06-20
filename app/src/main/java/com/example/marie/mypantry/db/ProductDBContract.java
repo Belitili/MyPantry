@@ -16,5 +16,6 @@ public final class ProductDBContract {
 
         public static final String COLUMN_NAME_PRODUCT = "product";
         public static final String COLUMN_NAME_AMOUNT = "amount";
+        public static final String COLUMN_NAME_LOCATION = "location";
     }
 }

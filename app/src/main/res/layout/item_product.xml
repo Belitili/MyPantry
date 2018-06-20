@@ -15,6 +15,13 @@
         android:text="@string/product"/>
 
     <TextView
+        android:id="@+id/product_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name"
+        android:textSize="15sp"/>
+
+    <TextView
         android:id="@+id/product_amount_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

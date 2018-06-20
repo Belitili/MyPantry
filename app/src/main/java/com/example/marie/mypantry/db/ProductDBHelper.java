@@ -11,7 +11,8 @@ public class ProductDBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + ProductDBContract.ProductEntry.TABLE_NAME + " (" +
                     ProductDBContract.ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT + " TEXT NOT NULL," +
-                    ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT + " TEXT)";
+                    ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT + " TEXT, " +
+                    ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION + " TEXT)";
 
     private static final String SQL_DELETE_PRODUCT_TABLE =
             "DROP TABLE IF EXISTS " + ProductDBContract.ProductEntry.TABLE_NAME;
@@ -22,6 +23,7 @@ public class ProductDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        System.out.println("Creating DB Query: " + SQL_CREATE_PRODUCT_TABLE);
         db.execSQL(SQL_CREATE_PRODUCT_TABLE);
     }
 

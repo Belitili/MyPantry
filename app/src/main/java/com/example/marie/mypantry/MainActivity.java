@@ -128,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
                         if (productNameBox.getText().toString().trim().equals("")) {
                             Toast.makeText(getApplicationContext(), "Product field was empty", Toast.LENGTH_LONG).show();
                         } else {
-                            if(productAmountBox.getText().toString().length()>5 || productNameBox.getText().toString().length()>20) {
-                                Toast.makeText(getApplicationContext(), "Amount can be only 5char long, Name 20char", Toast.LENGTH_LONG).show();
+                            if(productAmountBox.getText().toString().length()>AMT_MAX_LENGTH || productNameBox.getText().toString().length()>PROD_NAME_MAX_LENGTH) {
+                                Toast.makeText(getApplicationContext(), "Amount can be only " + AMT_MAX_LENGTH +"char long, Name "+PROD_NAME_MAX_LENGTH+"char", Toast.LENGTH_LONG).show();
                             } else {
-                                if (secondary_location.getText().toString().length()>20) {
-                                    Toast.makeText(getApplicationContext(), "Secondary location can have max 20char", Toast.LENGTH_LONG).show();
+                                if (secondary_location.getText().toString().length()>SECONDARY_LOC_MAX_LENGTH) {
+                                    Toast.makeText(getApplicationContext(), "Secondary location can have max "+SECONDARY_LOC_MAX_LENGTH+"char", Toast.LENGTH_LONG).show();
                                 } else {
                                     String product = String.valueOf(productNameBox.getText());
                                     String amount = String.valueOf(productAmountBox.getText());

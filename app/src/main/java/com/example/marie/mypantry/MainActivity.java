@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -230,17 +231,10 @@ public class MainActivity extends AppCompatActivity {
         String whereClause = ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT +  " LIKE ?";
         searchString = "%"+searchString+"%"; //case insensitive, can be in middle of string
         String[] whereArgs = new String[]{searchString};
-        Cursor cursor = db.query(ProductDBContract.ProductEntry.TABLE_NAME,
-                new String[]{ProductDBContract.ProductEntry._ID,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_SECONDARY_LOCATION},
-                whereClause, whereArgs, null, null, null);
+        Cursor cursor = this.makeQuery(db, whereClause, whereArgs, null, null, null);
         Log.d(TAG, "cursor: " + cursor);
 
-        this.printFromQueryList(cursor);
+        this.printFromQueryResultList(cursor);
 
         cursor.close();
         Log.d(TAG, "ProductList updated");
@@ -254,17 +248,10 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String whereClause = ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION +  " = ?";
         String[] whereArgs = new String[]{locationString};
-        Cursor cursor = db.query(ProductDBContract.ProductEntry.TABLE_NAME,
-                new String[]{ProductDBContract.ProductEntry._ID,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_SECONDARY_LOCATION},
-                whereClause, whereArgs, null, null, null);
+        Cursor cursor = this.makeQuery(db, whereClause, whereArgs, null, null, null);
         Log.d(TAG, "cursor: " + cursor);
 
-        this.printFromQueryList(cursor);
+        this.printFromQueryResultList(cursor);
 
         cursor.close();
         Log.d(TAG, "ProductList updated");
@@ -276,15 +263,8 @@ public class MainActivity extends AppCompatActivity {
     private void printAllList() {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(ProductDBContract.ProductEntry.TABLE_NAME,
-                new String[]{ProductDBContract.ProductEntry._ID,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION,
-                        ProductDBContract.ProductEntry.COLUMN_NAME_SECONDARY_LOCATION},
-                null, null, null, null, null);
-        this.printFromQueryList(cursor);
+        Cursor cursor = this.makeQuery(db, null, null, null, null, null);
+        this.printFromQueryResultList(cursor);
 
         cursor.close();
         Log.d(TAG, "ProductList updated");
@@ -292,8 +272,19 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
-    //print from query
-    private void printFromQueryList(Cursor cursor) {
+    private Cursor makeQuery(SQLiteDatabase db, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        return db.query(ProductDBContract.ProductEntry.TABLE_NAME,
+                new String[]{ProductDBContract.ProductEntry._ID,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION,
+                        ProductDBContract.ProductEntry.COLUMN_NAME_SECONDARY_LOCATION},
+                selection, selectionArgs, groupBy, having, orderBy);
+    }
+
+    //print from query result the list
+    private void printFromQueryResultList(Cursor cursor) {
         Vector<Product> products = new Vector<Product>();
         //ArrayList<String> products = new ArrayList<String>();
         while(cursor.moveToNext()) {

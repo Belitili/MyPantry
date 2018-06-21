@@ -38,6 +38,24 @@ public class MainActivity extends AppCompatActivity {
     private ProductAdaptor adapter;
     //private ArrayAdapter<String> adapter;
 
+    //print list of all products and show menu
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        dbHelper = new ProductDBHelper(this);
+        productListView = (ListView) findViewById(R.id.list_products);
+        this.printAllList();
+    }
+
+    //Render submenu for extra functions
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //sourcetype of r.menu is menu
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
     // + button to add new product, search button to search, x to go back to all products
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -51,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_show_all:
                 this.printAllList();
                 return true;
-            case R.id.action_filter_location:
+            case R.id.action_filter_and_order:
                 this.locationFilterDialog();
+                return true;
+            case R.id.order_alphabet:
+                this.orderListAlphabetically();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -188,39 +209,81 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
 
+    //print all products
+    private void orderListAlphabetically(){
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = this.makeQuery(db, null, null, null, null, ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT + " ASC");
+        this.printFromQueryResultList(cursor);
+
+        cursor.close();
+        Log.d(TAG, "ProductList updated");
+        db.close();
+        return;
+    }
+
     private void locationFilterDialog() {
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(20, 0, 30, 0);
+
+        final Spinner orderSpinner = new Spinner(this);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.order_types, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        orderSpinner.setAdapter(adapter2);
+        layout.addView(orderSpinner);
+
         final Spinner locationSpinner = new Spinner(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.locations_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationSpinner.setAdapter(adapter);
+        layout.addView(locationSpinner);
 
         AlertDialog dialogSearch = new AlertDialog.Builder(this)
-                .setTitle(this.getString(R.string.filter_location))
-                .setView(locationSpinner)
+                .setTitle(this.getString(R.string.filter_and_order))
+                .setView(layout)
+                .setMessage("Choose a location filter and order type")
                 .setPositiveButton(this.getString(R.string.search), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogSearch, int which) {
                         String locationString = locationSpinner.getSelectedItem().toString();
+                        String order = orderSpinner.getSelectedItem().toString();
                         Log.d(TAG, "Filter by location: " + locationString);
+
+                        Log.d(TAG, "Order: " + order);
+                        //Set orderBy by type
+                        String orderBy;
+                        switch (order) {
+                            case "A-Z Name":
+                                Log.d(TAG, "AAA--zzz");
+                                orderBy = ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT + " ASC";
+                                break;
+                            case "Z-A Name":
+                                orderBy = ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT + " DESC";
+                                break;
+                            case "Earliest-Last Added":
+                                orderBy = "_ID ASC";
+                                break;
+                            case "Last-Earliest Added":
+                                orderBy = "_ID DESC";
+                                break;
+                            default:
+                                orderBy = "_ID ASC";
+
+                        }
+                        Log.d(TAG, "Ordery by: " + orderBy);
                         //search in local db and print list
-                        printLocationFilteredList(locationString);
+                        printFilteredList(locationString, orderBy);
                     }
                 })
                 .setNegativeButton(this.getString(R.string.cancel), null)
                 .create();
         dialogSearch.show();
         return;
-    }
-
-    //print list of all products and show menu
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        dbHelper = new ProductDBHelper(this);
-        productListView = (ListView) findViewById(R.id.list_products);
-        this.printAllList();
     }
 
     //print list based on searchstring
@@ -243,12 +306,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //print list based on location filter
-    private void printLocationFilteredList(String locationString) {
+    private void printFilteredList(String locationString, String orderBy) {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String whereClause = ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION +  " = ?";
         String[] whereArgs = new String[]{locationString};
-        Cursor cursor = this.makeQuery(db, whereClause, whereArgs, null, null, null);
+        Cursor cursor = this.makeQuery(db, whereClause, whereArgs, null, null, orderBy);
         Log.d(TAG, "cursor: " + cursor);
 
         this.printFromQueryResultList(cursor);
@@ -309,14 +372,6 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         return;
-    }
-
-    //Render submenu for extra functions
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //sourcetype of r.menu is menu
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 
     //when you press x next to product

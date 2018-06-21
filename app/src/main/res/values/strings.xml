@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Pantry</string>
+    <string name="app_name">MP</string>
 
     //All text abstracted, for translation
     <string name="add_product">Add Product</string>
@@ -12,6 +12,7 @@
     <string name="search">Search</string>
     <string name="show_all_products">Show All Products</string>
     <string name="field_required">This field is required!</string>
-    <string name="filter_location">Filter by location</string>
+    <string name="filter_and_order">Filter and Order</string>
     <string name="secondary_location">Secondary location</string>
+    <string name="order_alphabet">Order alphabetically</string>
 </resources>

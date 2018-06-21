@@ -10,6 +10,14 @@
     <string-array name="units_array">
         <item>Pcs</item>
         <item>kg</item>
+        <item>g</item>
         <item>l</item>
+    </string-array>
+
+    <string-array name="order_types">
+        <item>A-Z Name</item>
+        <item>Z-A Name</item>
+        <item>Earliest-Last Added</item>
+        <item>Last-Earliest Added</item>
     </string-array>
 </resources>

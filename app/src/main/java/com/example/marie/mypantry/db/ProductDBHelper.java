@@ -13,7 +13,8 @@ public class ProductDBHelper extends SQLiteOpenHelper {
                     ProductDBContract.ProductEntry.COLUMN_NAME_PRODUCT + " TEXT NOT NULL," +
                     ProductDBContract.ProductEntry.COLUMN_NAME_AMOUNT + " REAL NOT NULL, " +
                     ProductDBContract.ProductEntry.COLUMN_NAME_AMT_UNIT + " TEXT NOT NULL," +
-                    ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION + " TEXT NOT NULL)";
+                    ProductDBContract.ProductEntry.COLUMN_NAME_LOCATION + " TEXT NOT NULL," +
+                    ProductDBContract.ProductEntry.COLUMN_NAME_SECONDARY_LOCATION + " TEXT)";
 
     private static final String SQL_DELETE_PRODUCT_TABLE =
             "DROP TABLE IF EXISTS " + ProductDBContract.ProductEntry.TABLE_NAME;

@@ -1,5 +1,7 @@
 package com.example.marie.mypantry;
 
+import java.sql.Date;
+
 public class Product {
 
     private String productName;
@@ -10,11 +12,14 @@ public class Product {
 
     private String location;
 
-    Product(String productName, double productAmount, String amountUnit, String location) {
+    private String secondary_location;
+
+    Product(String productName, double productAmount, String amountUnit, String location, String secondary_location) {
         this.setProductName(productName);
         this.setAmount(productAmount);
         this.setAmountUnit(amountUnit);
         this.setLocation(location);
+        this.setSecondary_location(secondary_location);
     }
 
     public void setProductName(String productName) {
@@ -33,6 +38,8 @@ public class Product {
         this.location = location;
     }
 
+    public void setSecondary_location(String secondary_location) { this.secondary_location = secondary_location; }
+
     public String getProductName() {
         return productName;
     }
@@ -45,5 +52,9 @@ public class Product {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getSecondary_location() {
+        return secondary_location;
     }
 }

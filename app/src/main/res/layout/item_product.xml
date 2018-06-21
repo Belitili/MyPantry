@@ -22,6 +22,15 @@
         android:textSize="15sp"/>
 
     <TextView
+        android:id="@+id/product_secondary_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/product_name"
+        android:layout_toRightOf="@id/product_location"
+        android:paddingLeft="5sp"
+        android:textSize="15sp"/>
+
+    <TextView
         android:id="@+id/product_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
